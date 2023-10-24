@@ -19,8 +19,13 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // rotas
-app.get('/', (requisicao, resposta) => {
-    resposta.render("home")
+app.post("/register/save",(request, response))
+
+app.get("/register", (request, response) =>{
+    response.render("register")
+})
+app.get("/", (request, response) => {
+    response.render("home")
 })
 
 // conexão com mySQL
@@ -29,7 +34,7 @@ const conn = mysql.createConnection({
     user: "root",
     password: "root",
     database: "nodemysql",
-    port: 3307
+    port: 3306
 })
 
 conn.connect((error) => {
