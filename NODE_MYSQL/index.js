@@ -1,3 +1,4 @@
+const { response } = require("express")
 const express = require ("express")
 const exphbs = require ("express-handlebars")
 const mysql = require("mysql")
@@ -43,7 +44,22 @@ app.get("/", (request, response) => {
 
     
 })
-
+app.get("/book/:id",(request, reponse) =>{
+    const id = request.paramis.id
+    const sql = `
+        SELECT * from BOOKS
+        WHERE ID=${id}
+    `
+    
+    conn.query(sql, (error,data) =>{
+        if(error){
+            return console.log(error)
+        }
+        const book = data[0]
+        
+        response.render("book", {book})
+    })
+})
 // conexão com mySQL
 const conn = mysql.createConnection({
     host: "localhost",
