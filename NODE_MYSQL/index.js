@@ -1,6 +1,7 @@
 const { response } = require("express")
 const express = require ("express")
 const exphbs = require ("express-handlebars")
+const { request } = require("http")
 const mysql = require("mysql")
 
 const app = express()
@@ -44,6 +45,20 @@ app.get("/", (request, response) => {
 
     
 })
+
+app.get("/edit/:id",(request, response) =>{
+    const id = request.params.id
+    const sql = `
+    SELECT * FROM books
+    WHERE id = ${id}
+    `
+    conn.query(sql,(error,data)=> {
+        if (error){
+            return console.log(error)
+        }
+
+    })
+} )
 app.get("/book/:id",(request, reponse) =>{
     const id = request.paramis.id
     const sql = `
