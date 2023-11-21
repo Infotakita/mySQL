@@ -83,3 +83,14 @@ main > h2{
     background: white;
     color:#007bff
 }
+
+.buttons .excluir {
+    border: 1px solid #e60707;
+    background: #ff0707;
+    color:white
+}
+
+.buttons .excluir:hover{
+    background: white;
+    color:#ff0000
+}
